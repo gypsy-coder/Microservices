@@ -1,0 +1,22 @@
+syntax = "proto2";
+package com.assignment;
+option java_package = "com.assignment.serviceone";
+option java_outer_classname = "PersonProto";
+
+message Person{
+    required string name = 1;
+    required int32 age = 2;
+    required double salary = 3;
+    optional string dob = 4;
+
+    enum FileType{
+       CSV = 0;
+       XML = 1;
+    }
+
+    message SaveContent{
+        required FileType fileType = 1 [default = CSV];
+    }
+
+    required SaveContent saveType = 5;
+}

@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+
+  service-two:
+    build: ./service-two
+    container_name: service-two
+    ports:
+      - "8089:8089"
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  service-one:
+    build: ./serviceone
+    container_name: service-one
+    ports:
+      - "8088:8088"
+    depends_on:
+      - service-two
+      - rabbitmq

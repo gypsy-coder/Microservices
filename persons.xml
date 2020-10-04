@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Persons>
+    <person>
+        <age>20</age>
+        <dob>21-08-2000</dob>
+        <name>HelloTestXML1</name>
+        <salary>300.0</salary>
+    </person>
+    <person>
+        <age>25</age>
+        <dob>21-08-1995</dob>
+        <name>HelloTestXML2</name>
+        <salary>300.0</salary>
+    </person>
+    <person>
+        <age>30</age>
+        <dob>21-08-1990</dob>
+        <name>HelloTestXML3</name>
+        <salary>300.0</salary>
+    </person>
+</Persons>
