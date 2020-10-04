@@ -1,0 +1,53 @@
+Service 1:
+This will be consumer-facing service which will accept request from the user.
+The service should accept the data in JSON format within the request body.
+The service should also accept another input fileType as a parameter or header within the request. The value to this parameter could be either CSV or XML.
+The service should expose 3 endpoints as below
+Store – to save new data
+Update – to update existing data
+Read – to read existing data, Read need not contain the fileType header or parameter
+Note the request itself could contain any data. Sample given below can be used.
+Sample body:
+{ name: “Hello”, dob: “20-08-2020”, salary: “122111241.150”, age: 20 }
+Request Header or Parameter
+fileType = CSV
+fileType = XML
+The service should process the request received with the below constraints.
+Validate the request completely. Including the data and data types
+Pass on the validated information to Service 2. Below are the conditions to keep in mind.
+The communication between Service 1 & Service 2 should NOT be http or https. Use some other means of communication.
+The data transferred to the second service should be encrypted and transformed to Google’s protocol buffer format.
+Only READ operation can be done over http
+Service 2:
+Service should receive and decrypt the information passed by the previous service.
+Once decrypted the service should store the information either in CSV/XML file based on the input received in the fileType parameter in the previous service.
+If the data should be read and returned then the returned data has to be encrypted. Which Service 1 should decrypt and respond to the consumer.
+
+To start application in docker container
+----------------------------------------
+
+docker-compose up
+
+To start application separately
+-------------------------------
+install rabbitmq and start on default ports
+start serviceone
+start service-two
+
+APIs
+READ <GET>: http://localhost:8088/serviceone/api/read/all
+STORE <POST>: http://localhost:8088/serviceone/api/store?fileType=CSV
+              payload: {
+                          "name":"HelloTestCSV4",
+                          "dob":"21-08-1990",
+                          "salary":"3500",
+                          "age":30
+                       }
+
+UPDATE <PUT>: http://localhost:8088/serviceone/api/update?fileType=XML
+               payload: {
+                            "name":"HelloTestXML1",
+                            "dob":"21-08-1990",
+                            "salary":"3600",
+                            "age":30
+                        }
